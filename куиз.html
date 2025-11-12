@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <title>Жұмбақ және құттықтау</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:linear-gradient(135deg,#fef3c7,#e0f2fe);
+      padding:40px;
+    }
+    .card {
+      max-width:600px;
+      margin:auto;
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    .logo {
+      width:90px;
+      margin-bottom:10px;
+    }
+    h1 { color:#1e3a8a; }
+    p { font-size:18px; line-height:1.5; }
+    input {
+      width:calc(100% - 22px);
+      padding:10px;
+      margin-top:14px;
+      font-size:16px;
+      border-radius:8px;
+      border:1px solid #ccc;
+    }
+    button {
+      background:#059669;
+      color:white;
+      border:none;
+      padding:10px 18px;
+      font-size:16px;
+      border-radius:8px;
+      margin-top:12px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    button:hover { background:#047857; }
+    .result { margin-top:20px; font-weight:600; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="TexLogo.png" alt="Логотип" class="logo">
+    <h1>👀 Жұмбақ</h1>
+    <p>
+      Қолында кілт, жанында пульт,<br>
+      Әуен қосса — күліп жүр жұрт.<br>
+      Бойы кішкентай, өзі ширақ,<br>
+      Кім екен бұл мұғалім — тапшы, бірақ! 🫶
+    </p>
+
+    <input id="ans" placeholder="Жауапты енгіз..." autocomplete="off">
+    <button onclick="check()">Тексеру</button>
+
+    <div id="res" class="result"></div>
+  </div>
+
+  <script>
+    const CORRECT_QUIZ_ANSWERS = ["Келдібек","келдібек"];
+    function normalize(s){ return s.trim().toLowerCase(); }
+    function check(){
+      const val = document.getElementById('ans').value;
+      const res = document.getElementById('res');
+      if(!val.trim()){ res.textContent="Жауап енгізіңіз."; res.style.color="#dc2626"; return; }
+      if(CORRECT_QUIZ_ANSWERS.map(normalize).includes(normalize(val))){
+        res.textContent = "🎉 Құттықтаймыз! Кілтті Келдібектен ала аласыз! 🔑 Тездетіп білім кілтінің иесі болыңыздар!";
+        res.style.color="#065f46";
+      } else {
+        res.textContent = "❌ Қате жауап, тағы бір ойлан!";
+        res.style.color="#b91c1c";
+      }
+    }
+  </script>
+</body>
+</html>

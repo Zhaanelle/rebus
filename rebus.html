@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ребустарды шеш!</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f0f9ff, #e0f2fe);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Логотип сол жақ шетте */
+    .logo {
+      width: 160px;
+      height: auto;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+    }
+
+    h1 {
+      color: #1e3a8a;
+      font-size: 2.2em;
+      margin: 0 0 40px 0;
+      padding-top: 10px; /* логотиппен қақтығыс болмас үшін */
+    }
+
+    /* Ребус контейнер */
+    .rebus-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      margin-top: 60px; /* логотипке орын қалдыру */
+      margin-bottom: 50px;
+    }
+
+    /* Бір жолдағы ребус */
+    .rebus {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Барлық суреттер бірдей көлемде */
+    .rebus img, .gif {
+      width: 300px;  /* Барлығы бірдей */
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* QR бөлігі */
+    .qr-section {
+      margin-top: 30px;
+    }
+
+    .qr-section img {
+      width: 240px; 
+      height: auto;
+      border: 4px solid #1e3a8a;
+      border-radius: 12px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 12px;
+      color: #334155;
+    }
+
+    /* Телефонға бейімдеу */
+    @media (max-width: 1024px) {
+      .rebus img, .gif {
+        width: 90%;
+        max-width: 300px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Логотип сол жақ шетте -->
+  <img src="TexLogo.png" alt="Логотип" class="logo">
+
+  <h1>Жас мамандар, ребустарды шешіп, жасырын сөйлемді табыңыздар!</h1>
+
+  <div class="rebus-container">
+
+    <!-- Бірінші ребус: 4 сурет -->
+    <div class="rebus">
+      <img src="1rebus.png" alt="Ребус 1 сурет 1">
+      <img src="1rebus2.png" alt="Ребус 1 сурет 2">
+      <img src="1rebus3.png" alt="Ребус 1 сурет 3">
+      <img src="1rebus4.png" alt="Ребус 1 сурет 4">
+    </div>
+
+    <!-- Екінші ребус: ортасында GIF -->
+    <div class="rebus">
+      <img src="2rebus1.png" alt="Ребус 2 сурет 1">
+      <img src="1.gif" alt="Ребус 2 сурет 2">
+      <img src="2rebus2.png" class="gif" alt="GIF ортасында">
+      <img src="2rebus3.png" alt="Ребус 2 сурет 3">
+    </div>
+
+    <!-- Үшінші ребус: 4 сурет -->
+    <div class="rebus">
+      <img src="3rebus1.png" alt="Ребус 3 сурет 1">
+      <img src="3rebus2.png" alt="Ребус 3 сурет 2">
+      <img src="3rebus3.png" alt="Ребус 3 сурет 3">
+      <img src="3rebus4.png" alt="Ребус 3 сурет 4">
+    </div>
+
+  </div>
+
+  <!-- QR бөлігі -->
+  <div class="qr-section">
+    <img src="qr-code.png" alt="Жауап енгізу бетінің QR коды">
+    <p>📱 <strong>Жауаптарыңызды енгізу үшін</strong> — осы QR кодты сканерлеңіздер!</p>
+  </div>
+
+</body>
+</html>

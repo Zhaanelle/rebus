@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8">
+  <title>Ребусқа жауап жіберу</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:linear-gradient(135deg,#e0f2fe,#fefce8);
+      padding:40px;
+    }
+    .card {
+      max-width:500px;
+      margin:auto;
+      background:white;
+      padding:30px;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    img.logo {
+      width:90px;
+      margin-bottom:10px;
+    }
+    h2 { color:#0f172a; }
+    input {
+      width:calc(100% - 22px);
+      padding:10px;
+      font-size:16px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      margin-top:12px;
+    }
+    button {
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:10px 18px;
+      font-size:16px;
+      border-radius:8px;
+      margin-top:12px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    button:hover { background:#1e40af; }
+    #qrWrap { margin-top:20px; }
+    #status { margin-top:10px; font-weight:500; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="TexLogo.png" alt="Логотип" class="logo">
+    <h2>Сәлем, ЖАС МАМАН!👶</h2>
+    <p>Ребустың шешімін тауып көріңіз.🙆‍♀️</p>
+
+    <input id="answer" placeholder="Жауабыңызды бос орын(пробел) арқылы, кіші әріппен жазыңыз..." autocomplete="off">
+    <button id="checkBtn">Тексеру</button>
+
+    <div id="status"></div>
+    <div id="qrWrap"></div>
+  </div>
+
+  <script>
+    const CORRECT_REBUS_ANSWER = "сүйкімді ақылды информатик"; // ← ребустың дұрыс жауабы
+    const checkBtn = document.getElementById('checkBtn');
+    const status = document.getElementById('status');
+    const qrWrap = document.getElementById('qrWrap');
+
+    function normalize(s){ return s.trim().toLowerCase().replace(/\s+/g,''); }
+
+    checkBtn.addEventListener('click', () => {
+      const val = document.getElementById('answer').value;
+      if(!val.trim()) { status.textContent = "Жауап енгізіңіз."; status.style.color="#dc2626"; return; }
+
+      if(normalize(val) === normalize(CORRECT_REBUS_ANSWER)){
+        status.textContent = "💃 Дұрыс жауап! Төменде QR коды пайда болды.";
+        status.style.color = "#16a34a";
+        showQR();
+      } else {
+        status.textContent = "🙅‍♀️ Қате, тағы ойланып көріңіздер!";
+        status.style.color = "#dc2626";
+        qrWrap.innerHTML = "";
+      }
+    });
+
+    function showQR(){
+      const TARGET_URL = location.origin + location.pathname.replace(/\/[^/]*$/,'') + '/quiz.html';
+      const qrSrc = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=" + encodeURIComponent(TARGET_URL);
+      qrWrap.innerHTML = `
+        <div style="margin-top:15px;">
+          <p>QR кодты телефонмен сканерле:</p>
+          <a href="${TARGET_URL}" target="_blank">
+            <img src="${qrSrc}" alt="QR код" style="width:200px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.15)">
+          </a>
+        </div>`;
+    }
+  </script>
+</body>
+</html>
