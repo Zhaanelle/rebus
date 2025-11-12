@@ -44,8 +44,8 @@
       transition:0.3s;
     }
     button:hover { background:#1e40af; }
-    #qrWrap { margin-top:20px; }
     #status { margin-top:10px; font-weight:500; }
+    #nextBtn { display:none; } /* Бастапқыда жасырылған */
   </style>
 </head>
 <body>
@@ -58,43 +58,42 @@
     <button id="checkBtn">Тексеру</button>
 
     <div id="status"></div>
-    <div id="qrWrap"></div>
+    <button id="nextBtn">Келесіге өту →</button>
   </div>
 
   <script>
     const CORRECT_REBUS_ANSWER = "сүйкімді ақылды информатик"; // ← ребустың дұрыс жауабы
     const checkBtn = document.getElementById('checkBtn');
     const status = document.getElementById('status');
-    const qrWrap = document.getElementById('qrWrap');
+    const nextBtn = document.getElementById('nextBtn');
 
-    function normalize(s){ return s.trim().toLowerCase().replace(/\s+/g,''); }
+    function normalize(s){ 
+      return s.trim().toLowerCase().replace(/\s+/g,''); 
+    }
 
     checkBtn.addEventListener('click', () => {
       const val = document.getElementById('answer').value;
-      if(!val.trim()) { status.textContent = "Жауап енгізіңіз."; status.style.color="#dc2626"; return; }
+      if(!val.trim()) { 
+        status.textContent = "Жауап енгізіңіз."; 
+        status.style.color="#dc2626"; 
+        nextBtn.style.display = "none";
+        return; 
+      }
 
       if(normalize(val) === normalize(CORRECT_REBUS_ANSWER)){
-        status.textContent = "💃 Дұрыс жауап! Төменде QR коды пайда болды.";
+        status.textContent = "💃 Дұрыс жауап! Келесіге өтіңіз ↓";
         status.style.color = "#16a34a";
-        showQR();
+        nextBtn.style.display = "inline-block";
       } else {
         status.textContent = "🙅‍♀️ Қате, тағы ойланып көріңіздер!";
         status.style.color = "#dc2626";
-        qrWrap.innerHTML = "";
+        nextBtn.style.display = "none";
       }
     });
 
-    function showQR(){
-      const TARGET_URL = location.origin + location.pathname.replace(/\/[^/]*$/,'') + '/quiz.html';
-      const qrSrc = "https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=" + encodeURIComponent(TARGET_URL);
-      qrWrap.innerHTML = `
-        <div style="margin-top:15px;">
-          <p>QR кодты телефонмен сканерле:</p>
-          <a href="${TARGET_URL}" target="_blank">
-            <img src="${qrSrc}" alt="QR код" style="width:200px;border-radius:10px;box-shadow:0 6px 16px rgba(0,0,0,0.15)">
-          </a>
-        </div>`;
-    }
+    nextBtn.addEventListener('click', () => {
+      window.location.href = "куиз.html"; // ← келесі бет
+    });
   </script>
 </body>
 </html>
